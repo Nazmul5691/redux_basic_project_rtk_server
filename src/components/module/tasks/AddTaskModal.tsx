@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/dialog"
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form"
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { DialogDescription } from "@radix-ui/react-dialog";
 import { useForm } from "react-hook-form"
 
 export function AddTaskModal() {
@@ -27,19 +29,31 @@ export function AddTaskModal() {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
+                    <DialogDescription className="sr-only">Fill up this form to add task</DialogDescription>
                     <DialogTitle>Add Task</DialogTitle>
                 </DialogHeader>
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)}>
-
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-2">
                         <FormField
                             control={form.control}
                             name="title"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel />
+                                    <FormLabel>Title</FormLabel>
                                     <FormControl>
-                                        <Input {...field} />
+                                        <Input {...field} value={field.value || ""} />
+                                    </FormControl>
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="Description"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Description</FormLabel>
+                                    <FormControl>
+                                        <Textarea {...field} value={field.value || ""} />
                                     </FormControl>
                                 </FormItem>
                             )}
@@ -49,9 +63,6 @@ export function AddTaskModal() {
                         </DialogFooter>
                     </form>
                 </Form>
-
-
-
             </DialogContent>
         </Dialog>
     )

@@ -21,7 +21,7 @@ export default function Tasks() {
             <div className="flex flex-col gap-4">
                 {
                     tasks.map((task) => (
-                        <TaskCard task={task} />
+                        <TaskCard task={task} key={task.id}/>
                     ))
                 }
             </div>
