@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface InitialState {
     task: ITask[];
-    filter: "all" | "high" | "medium" | "low"
+    filter: "all" | "High" | "Medium" | "Low"
 }
 
 const initialState: InitialState = {
@@ -16,6 +16,14 @@ const initialState: InitialState = {
             dueDate: "2035-11-11",
             isCompleted: false,
             priority: "High"
+        },
+        {
+            id: "fkjfjkasdfh",
+            title: "Initialized github repo",
+            description: "Create github repo",
+            dueDate: "2035-11-11",
+            isCompleted: false,
+            priority: "Medium"
         }
     ],
     filter: "all"
