@@ -1,12 +1,14 @@
-import { Button } from "./components/ui/button"
+import { Outlet } from "react-router"
+import Navbar from "./components/layout/Navbar"
 
 
 function App() {
 
   return (
-    <>
-      <Button>Test</Button>
-    </>
+    <div className="max-w-7xl mx-auto">
+      <Navbar />
+      <Outlet />
+    </div>
   )
 }
 
