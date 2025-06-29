@@ -14,7 +14,8 @@ const initialState: InitialState = {
         description: "fgsh",
         priority: "high",
         isCompleted: false,
-        dueDate: "2025-06-24T18:00:00.000Z"
+        dueDate: "2025-06-24T18:00:00.000Z",
+        // assignedTo: "mir"
     }],
     filter: "all"
 }
@@ -65,16 +66,16 @@ const taskSlice = createSlice({
 
 export const selectTasks = (state: RootState) => {
     const filter = state.tasks.filter
-    if (filter === "low") {
-        return state.tasks.task.filter(task => task.priority === "low")
+    if(filter === "low"){
+        return state.tasks.task.filter(task =>task.priority === "low")
     }
-    else if (filter === "medium") {
+    else if(filter === "medium"){
         return state.tasks.task.filter(task => task.priority === "medium")
     }
-    else if (filter === "high") {
+    else if(filter === "high"){
         return state.tasks.task.filter(task => task.priority === "high")
     }
-    else {
+    else{
         return state.tasks.task
     }
 }
