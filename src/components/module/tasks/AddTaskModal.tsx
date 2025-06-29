@@ -15,6 +15,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { addTask } from "@/redux/features/tasks/taskSlice";
+import { useAppDispatch } from "@/redux/hook";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -24,9 +26,17 @@ export function AddTaskModal() {
 
     const form = useForm();
 
+    const dispatch = useAppDispatch();
+
     const onSubmit = (data: any) => {
         console.log(data);
+        const taskData = {
+            ...data,
+            dueDate: data.dueDate ? data.dueDate.toISOString() : null
+        }
+        dispatch(addTask(taskData));
     }
+   
 
     return (
         <Dialog>
@@ -54,7 +64,7 @@ export function AddTaskModal() {
                         />
                         <FormField
                             control={form.control}
-                            name="Description"
+                            name="description"
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>Description</FormLabel>

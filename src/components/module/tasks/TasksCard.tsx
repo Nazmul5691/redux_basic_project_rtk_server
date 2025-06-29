@@ -15,9 +15,9 @@ export default function TaskCard({task} :IProps) {
         {/* Left Side: Dot + Title */}
         <div className="flex items-center gap-1">
           <BsDot className={cn("text-4xl", {
-            "text-green-500" : task.priority === "Low",
-            "text-yellow-500" : task.priority === "Medium",
-            "text-red-500" : task.priority === "High",
+            "text-green-500" : task.priority === "low",
+            "text-yellow-500" : task.priority === "medium",
+            "text-red-500" : task.priority === "high",
           })} />
           <h2 className="text-base font-medium">{task.title}</h2>
         </div>
