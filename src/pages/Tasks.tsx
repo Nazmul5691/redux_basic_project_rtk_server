@@ -1,18 +1,18 @@
-import { AddTaskModal } from "@/components/module/tasks/AddTaskModal";
-import TaskCard from "@/components/module/tasks/TasksCard";
+// import { AddTaskModal } from "@/components/module/tasks/AddTaskModal";
+// import TaskCard from "@/components/module/tasks/TasksCard";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { selectTasks, updateFilter } from "@/redux/features/tasks/taskSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hook";
+// import {  updateFilter } from "@/redux/features/tasks/taskSlice";
+// import { useAppDispatch, } from "@/redux/hook";
 
 
 export default function Tasks() {
 
     // const tasks = useAppSelector((state) => state.tasks.task)
-    const tasks = useAppSelector(selectTasks)
+    // const tasks = useAppSelector(selectTasks)
 
-    console.log(tasks);
+    // console.log(tasks);
 
-    const dispatch = useAppDispatch();
+    // const dispatch = useAppDispatch();
 
 
     return (
@@ -21,21 +21,21 @@ export default function Tasks() {
                 <h1 className="mr-auto">Task</h1>
                 <Tabs defaultValue="all" className="mr-4">
                     <TabsList>
-                        <TabsTrigger onClick={() => dispatch(updateFilter("all"))} value="all">All</TabsTrigger>
-                        <TabsTrigger onClick={() => dispatch(updateFilter("low"))} value="low">Low</TabsTrigger>
-                        <TabsTrigger onClick={() => dispatch(updateFilter("medium"))} value="medium">Medium</TabsTrigger>
-                        <TabsTrigger onClick={() => dispatch(updateFilter("high"))} value="high">High</TabsTrigger>
+                        <TabsTrigger value="all">All</TabsTrigger>
+                        <TabsTrigger value="low">Low</TabsTrigger>
+                        <TabsTrigger value="medium">Medium</TabsTrigger>
+                        <TabsTrigger value="high">High</TabsTrigger>
                     </TabsList>
                 </Tabs>
-                <AddTaskModal />
+                {/* <AddTaskModal /> */}
             </div>
-            <div className="flex flex-col gap-4">
+            {/* <div className="flex flex-col gap-4">
                 {
                     tasks.map((task) => (
                         <TaskCard task={task} key={task.id} />
                     ))
                 }
-            </div>
+            </div> */}
         </div>
     );
 }
