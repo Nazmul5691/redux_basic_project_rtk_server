@@ -1,7 +1,7 @@
 import { FaTrash } from 'react-icons/fa';
 import type { IUser } from '@/types';
 import { useAppDispatch } from '@/redux/hook';
-import { deleteTask,  } from '@/redux/features/tasks/taskSlice';
+import { deleteUser } from '@/redux/features/users/userSlice';
 
 
 interface IProps {
@@ -24,7 +24,7 @@ export default function UserCard({ user }: IProps) {
                 {/* Right Side: Delete + Checkbox */}
                 <div className="flex items-center gap-2">
                     <button className="text-red-500 hover:text-red-600">
-                        <FaTrash onClick={() => dispatch(deleteTask(user.id))} size={12} />
+                        <FaTrash onClick={() => dispatch(deleteUser(user.id))} size={12} />
                     </button>
                 </div>
             </div>

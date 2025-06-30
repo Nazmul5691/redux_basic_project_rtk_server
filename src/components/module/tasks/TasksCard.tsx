@@ -15,7 +15,8 @@ export default function TaskCard({ task }: IProps) {
 
   const dispatch = useAppDispatch();
 
-  const users = useAppSelector(selectUsers)
+  const users = useAppSelector(selectUsers);
+  
   const assignedTo = users.find(user => user.id == task.assignedTo)
 
 

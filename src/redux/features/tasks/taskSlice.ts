@@ -1,6 +1,7 @@
 import type { RootState } from "@/redux/store";
 import type { ITask } from "@/types";
 import { createSlice, nanoid, type PayloadAction } from "@reduxjs/toolkit";
+import { deleteUser } from "../users/userSlice";
 
 interface InitialState {
     task: ITask[];
@@ -15,16 +16,21 @@ const initialState: InitialState = {
         priority: "high",
         isCompleted: false,
         dueDate: "2025-06-24T18:00:00.000Z",
-        // assignedTo: "mir"
+        assignedTo: null
     }],
     filter: "all"
 }
 
 
-type DraftTask = Pick<ITask, "description" | "dueDate" | "priority" | "title">
+type DraftTask = Pick<ITask, "description" | "dueDate" | "priority" | "title" | "assignedTo">
 
 const createTask = (taskData: DraftTask): ITask => {
-    return { id: nanoid(), isCompleted: false, ...taskData };
+    return {
+        ...taskData,
+        id: nanoid(),
+        isCompleted: false,
+        assignedTo: taskData.assignedTo ? taskData.assignedTo : null
+    };
 }
 
 // const taskSlice = createSlice({
@@ -60,22 +66,27 @@ const taskSlice = createSlice({
         updateFilter: (state, action: PayloadAction<"all" | "high" | "medium" | "low">) => {
             state.filter = action.payload;
         }
+    },
+    extraReducers: (builder) =>{
+        builder.addCase(deleteUser, (state, action) =>{
+            state.task.forEach(task => task.assignedTo === action.payload ? (task.assignedTo = null) : task )
+        })
     }
 })
 
 
 export const selectTasks = (state: RootState) => {
     const filter = state.tasks.filter
-    if(filter === "low"){
-        return state.tasks.task.filter(task =>task.priority === "low")
+    if (filter === "low") {
+        return state.tasks.task.filter(task => task.priority === "low")
     }
-    else if(filter === "medium"){
+    else if (filter === "medium") {
         return state.tasks.task.filter(task => task.priority === "medium")
     }
-    else if(filter === "high"){
+    else if (filter === "high") {
         return state.tasks.task.filter(task => task.priority === "high")
     }
-    else{
+    else {
         return state.tasks.task
     }
 }
