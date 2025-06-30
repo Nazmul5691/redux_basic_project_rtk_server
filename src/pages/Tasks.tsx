@@ -18,7 +18,12 @@ export default function Tasks() {
     // const dispatch = useAppDispatch();
 
 
-    const {data, isLoading} = useGetTasksQuery(undefined)
+    const {data, isLoading} = useGetTasksQuery(undefined, {
+        pollingInterval: 30000,
+        refetchOnFocus: true,
+        refetchOnMountOrArgChange: true,
+        refetchOnReconnect: true
+    })
 
     // console.log(data, isLoading, isError);
     if(isLoading){
