@@ -1,6 +1,9 @@
 // import { AddTaskModal } from "@/components/module/tasks/AddTaskModal";
 // import TaskCard from "@/components/module/tasks/TasksCard";
+import TaskCard from "@/components/module/tasks/TasksCard";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useGetTasksQuery } from "@/redux/api/baseApi";
+import type { ITask } from "@/types";
 // import {  updateFilter } from "@/redux/features/tasks/taskSlice";
 // import { useAppDispatch, } from "@/redux/hook";
 
@@ -14,6 +17,13 @@ export default function Tasks() {
 
     // const dispatch = useAppDispatch();
 
+
+    const {data, isLoading} = useGetTasksQuery(undefined)
+
+    // console.log(data, isLoading, isError);
+    if(isLoading){
+        return <p>Loading.....</p>
+    }
 
     return (
         <div>
@@ -29,13 +39,14 @@ export default function Tasks() {
                 </Tabs>
                 {/* <AddTaskModal /> */}
             </div>
-            {/* <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4">
                 {
-                    tasks.map((task) => (
+                    !isLoading && 
+                    data.tasks.map((task : ITask) => (
                         <TaskCard task={task} key={task.id} />
                     ))
                 }
-            </div> */}
+            </div>
         </div>
     );
 }
