@@ -1,4 +1,4 @@
-// import { AddTaskModal } from "@/components/module/tasks/AddTaskModal";
+import { AddTaskModal } from "@/components/module/tasks/AddTaskModal";
 // import TaskCard from "@/components/module/tasks/TasksCard";
 import TaskCard from "@/components/module/tasks/TasksCard";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -37,7 +37,7 @@ export default function Tasks() {
                         <TabsTrigger value="high">High</TabsTrigger>
                     </TabsList>
                 </Tabs>
-                {/* <AddTaskModal /> */}
+                <AddTaskModal />
             </div>
             <div className="flex flex-col gap-4">
                 {
